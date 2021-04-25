@@ -1,0 +1,19 @@
+  <img src="../../assets/bg-masthead.jpg" style="position: fixed; margin-top: -150px;">
+  <div class="container">
+    <div *ngIf="!registerMode" class="centered">
+        <h1>Find your match</h1>
+        <p class="lead">Sign up to be part of our community!</p>
+        <div class="text-center">
+            <button (click)="registerToggle()" class="btn btn-outline-success btn-lg">Register</button>
+            
+        </div>
+    </div>
+
+    <div *ngIf="registerMode" class="container">
+        <div class="row justify-content-center">
+            <div class="col-4">
+                <app-register (cancelRegister)="cancelRegisterMode($event)"></app-register>
+            </div>
+        </div>
+    </div>
+</div>
