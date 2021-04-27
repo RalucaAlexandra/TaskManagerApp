@@ -14,7 +14,7 @@ export class BusyService {
     this.spinnerService.show(undefined, {
       type: 'ball-beat',
       bdColor: 'rgba(255,255,255,0)',
-      color: '#9b7ad5'
+      color: '#20c997'
     });
   }
 
