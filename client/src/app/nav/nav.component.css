@@ -1,6 +1,10 @@
 .dropdown-toggle, .dropdown-item {
     cursor: pointer;
 }
-
-
+.navbar a {
+    font-size: 17px;
+}
+      
+      
+    
 
