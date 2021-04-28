@@ -1,0 +1,22 @@
+.container {
+    position: absolute;
+    right: 0;
+    margin: 20px;
+    max-width: 600px;
+    padding: 30px;
+    background: rgba(12, 12, 12, 0.2)
+  }
+
+  input[type='radio']:checked:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color: #18bc9c;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid white;
+}
