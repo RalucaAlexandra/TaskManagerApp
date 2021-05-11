@@ -1,0 +1,125 @@
+ <div class="row">
+    <div class="col-xl-12">
+      <div class="form-group row">
+  
+        <div class="col-md-12 col-lg-12 col-xl-2">
+          <button class="btn btn-primary" data-toggle="modal" data-target="#newTaskStatusModal" (click)="onNewClick($event)">Create Task Status</button>
+        </div>
+      </div>
+    </div>
+  
+  
+    <div class="col-xl-12">
+      <div class="row">
+        <div class="col-xl-8 col-lg-9 mx-auto">
+          <table class="table">
+            <tr class="table text-dark">
+              <th>
+                Task Status Name
+              </th>
+  
+              <th class="text-center" style="width:200px">Actions</th>
+            </tr>
+            
+            <tr *ngFor="let taskStatus of taskStatuses; let i = index">
+              <td>{{taskStatus.taskStatusName}}</td>
+              <td class="text-center">
+                <button class="btn btn-info" (click)="onEditClick($event, taskStatus)" data-toggle="modal" data-target="#editTaskStatusModal">Edit</button>&nbsp;
+                <button class="btn btn-warning" (click)="onDeleteClick($event, taskStatus)" data-toggle="modal" data-target="#deleteModal">Delete</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  
+  <form novalidate="novalidate" [formGroup]="newForm">
+    <div class="modal" role="dialog" id="newTaskStatusModal">
+      <div class="modal-dialog modal-md">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white">
+            <div class="modal-title">New Task Status</div>
+            <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+          </div>
+          <div class="modal-body">
+  
+            <div class="form-group row">
+              <label for="txtNewTaskStatusName" class="col-sm-4 col-form-label">Task Status Name *</label>
+              <div class="col-sm-8">
+                <input type="text" id="txtNewTaskStatusName" class="form-control" placeholder="Task Status Name" name="TaskStatusName"  formControlName="taskStatusName" maxlength="30" #defaultTextBox_New [ngClass]="{ 'is-invalid': newForm.get('taskStatusName').invalid && (newForm.get('taskStatusName').dirty || newForm.get('taskStatusName').touched), 'is-valid': newForm.get('taskStatusName').valid && (newForm.get('taskStatusName').dirty || newForm.get('taskStatusName').touched ) }">
+  
+                <span class="text-danger" *ngIf="newForm.get('taskStatusName').invalid && (newForm.get('taskStatusName').dirty || newForm.get('taskStatusName').touched) && newForm.get('taskStatusName').errors?.required">Task Status Name can't be blank</span>
+              </div>
+            </div>
+  
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-warning" data-dismiss="modal" id="newTaskStatusFormCancel" type="button">Cancel</button>
+            <button class="btn btn-success" (click)="onSaveClick()">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  
+  <!-- Edit Task Status -->
+  <form novalidate="novalidate" [formGroup]="editForm">
+    <div class="modal" role="dialog" id="editTaskStatusModal">
+      <div class="modal-dialog modal-md">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white">
+            <div class="modal-title">Edit Task Status</div>
+            <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+          </div>
+          <div class="modal-body">
+  
+            <div class="form-group row">
+              <label for="txtEditTaskStatusName" class="col-sm-4 col-form-label">Task Status Name *</label>
+              <div class="col-sm-8">
+                <input type="text" id="txtEditTaskStatusName" class="form-control" placeholder="Task Status Name" name="TaskStatusName" formControlName="taskStatusName" maxlength="30" #defaultTextBox_Edit [ngClass]="{ 'is-invalid': editForm.get('taskStatusName').invalid && (editForm.get('taskStatusName').dirty || editForm.get('taskStatusName').touched), 'is-valid': editForm.get('taskStatusName').valid && (editForm.get('taskStatusName').dirty || editForm.get('taskStatusName').touched ) }">
+  
+                <span class="text-danger" *ngIf="editForm.get('taskStatusName').invalid && (editForm.get('taskStatusName').dirty || editForm.get('taskStatusName').touched) && editForm.get('taskStatusName').errors?.required">Task Status Name can't be blank</span>
+              </div>
+            </div>
+  
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-warning" data-dismiss="modal" id="editTaskStatusFormCancel" type="button">Cancel</button>
+            <button class="btn btn-success" (click)="onUpdateClick()">Update</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  
+  
+  <!-- Delete Task Status -->
+  <form>
+    <div class="modal" role="dialog" id="deleteModal">
+      <div class="modal-dialog modal-md">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white">
+            <div class="modal-title">Delete Task Status</div>
+            <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+          </div>
+          <div class="modal-body">
+  
+            <div class="text-warning">Are you sure to delete this Task Status?</div>
+  
+            <div class="form-group row">
+              <label for="txtDeleteTaskStatusName" class="col-sm-4 col-form-label">Task Status Name</label>
+              <div class="col-sm-8">
+                <input type="text" id="txtDeleteTaskStatusName" class="form-control-plain-text" style="width:300px" placeholder="Task Status Name" name="TaskStatusName" [(ngModel)]="deleteTaskStatus.taskStatusName" disabled="disabled">
+              </div>
+            </div>
+  
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-warning" data-dismiss="modal" type="button">Cancel</button>
+            <button class="btn btn-danger" data-dismiss="modal" (click)="onDeleteConfirmClick()">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>

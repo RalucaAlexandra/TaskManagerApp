@@ -257,6 +257,226 @@ namespace API.Data.Migrations
                     b.ToTable("Photos");
                 });
 
+            modelBuilder.Entity("API.Entities.Project", b =>
+                {
+                    b.Property<int>("ProjectID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("DateOfStart")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ProjectName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("TeamSize")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProjectID");
+
+                    b.ToTable("Projects");
+
+                    b.HasData(
+                        new
+                        {
+                            ProjectID = 1,
+                            DateOfStart = new DateTime(2020, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ProjectName = "Project1",
+                            TeamSize = 10
+                        },
+                        new
+                        {
+                            ProjectID = 2,
+                            DateOfStart = new DateTime(2020, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ProjectName = "Project2",
+                            TeamSize = 10
+                        },
+                        new
+                        {
+                            ProjectID = 3,
+                            DateOfStart = new DateTime(2020, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ProjectName = "Project3",
+                            TeamSize = 10
+                        },
+                        new
+                        {
+                            ProjectID = 4,
+                            DateOfStart = new DateTime(2020, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ProjectName = "Project4",
+                            TeamSize = 10
+                        },
+                        new
+                        {
+                            ProjectID = 5,
+                            DateOfStart = new DateTime(2020, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ProjectName = "Project5",
+                            TeamSize = 10
+                        });
+                });
+
+            modelBuilder.Entity("API.Entities.Task", b =>
+                {
+                    b.Property<int>("TaskID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AssignedTo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CurrentStatus")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CurrentTaskStatusID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("LastUpdatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ProjectID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TaskName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TaskPriorityID")
+                        .HasColumnType("int");
+
+                    b.HasKey("TaskID");
+
+                    b.HasIndex("AssignedTo");
+
+                    b.HasIndex("CreatedBy");
+
+                    b.HasIndex("ProjectID");
+
+                    b.HasIndex("TaskPriorityID");
+
+                    b.ToTable("Tasks");
+                });
+
+            modelBuilder.Entity("API.Entities.TaskPriority", b =>
+                {
+                    b.Property<int>("TaskPriorityID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("TaskPriorityName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("TaskPriorityID");
+
+                    b.ToTable("TaskPriorities");
+
+                    b.HasData(
+                        new
+                        {
+                            TaskPriorityID = 1,
+                            TaskPriorityName = "Urgent"
+                        },
+                        new
+                        {
+                            TaskPriorityID = 2,
+                            TaskPriorityName = "High"
+                        },
+                        new
+                        {
+                            TaskPriorityID = 3,
+                            TaskPriorityName = "Normal"
+                        },
+                        new
+                        {
+                            TaskPriorityID = 4,
+                            TaskPriorityName = "Low"
+                        });
+                });
+
+            modelBuilder.Entity("API.Entities.TaskStatus", b =>
+                {
+                    b.Property<int>("TaskStatusID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("TaskStatusName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("TaskStatusID");
+
+                    b.ToTable("TaskStatuses");
+
+                    b.HasData(
+                        new
+                        {
+                            TaskStatusID = 1,
+                            TaskStatusName = "In Progress"
+                        },
+                        new
+                        {
+                            TaskStatusID = 2,
+                            TaskStatusName = "Ready for QA"
+                        },
+                        new
+                        {
+                            TaskStatusID = 3,
+                            TaskStatusName = "Assigned"
+                        },
+                        new
+                        {
+                            TaskStatusID = 4,
+                            TaskStatusName = "Finished"
+                        },
+                        new
+                        {
+                            TaskStatusID = 5,
+                            TaskStatusName = "Code Review"
+                        });
+                });
+
+            modelBuilder.Entity("API.Entities.TaskStatusDetail", b =>
+                {
+                    b.Property<int>("TaskStatusDetailID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("StatusUpdationDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("TaskID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TaskStatusID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserID")
+                        .HasColumnType("int");
+
+                    b.HasKey("TaskStatusDetailID");
+
+                    b.HasIndex("TaskID");
+
+                    b.HasIndex("TaskStatusID");
+
+                    b.HasIndex("UserID");
+
+                    b.ToTable("TaskStatusDetails");
+                });
+
             modelBuilder.Entity("API.Entities.UserLike", b =>
                 {
                     b.Property<int>("SourceUserId")
@@ -414,6 +634,66 @@ namespace API.Data.Migrations
                     b.Navigation("AppUser");
                 });
 
+            modelBuilder.Entity("API.Entities.Task", b =>
+                {
+                    b.HasOne("API.Entities.AppUser", "AssignedToUser")
+                        .WithMany()
+                        .HasForeignKey("AssignedTo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("API.Entities.AppUser", "CreatedByUser")
+                        .WithMany()
+                        .HasForeignKey("CreatedBy")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("API.Entities.Project", "Project")
+                        .WithMany()
+                        .HasForeignKey("ProjectID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("API.Entities.TaskPriority", "TaskPriority")
+                        .WithMany()
+                        .HasForeignKey("TaskPriorityID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AssignedToUser");
+
+                    b.Navigation("CreatedByUser");
+
+                    b.Navigation("Project");
+
+                    b.Navigation("TaskPriority");
+                });
+
+            modelBuilder.Entity("API.Entities.TaskStatusDetail", b =>
+                {
+                    b.HasOne("API.Entities.Task", null)
+                        .WithMany("TaskStatusDetails")
+                        .HasForeignKey("TaskID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("API.Entities.TaskStatus", "TaskStatus")
+                        .WithMany()
+                        .HasForeignKey("TaskStatusID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("API.Entities.AppUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("TaskStatus");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("API.Entities.UserLike", b =>
                 {
                     b.HasOne("API.Entities.AppUser", "LikedUser")
@@ -492,6 +772,11 @@ namespace API.Data.Migrations
             modelBuilder.Entity("API.Entities.Group", b =>
                 {
                     b.Navigation("Connections");
+                });
+
+            modelBuilder.Entity("API.Entities.Task", b =>
+                {
+                    b.Navigation("TaskStatusDetails");
                 });
 #pragma warning restore 612, 618
         }

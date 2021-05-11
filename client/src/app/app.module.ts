@@ -30,9 +30,20 @@ import { MemberMessagesComponent } from './members/member-messages/member-messag
 import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 import { HasRoleDirective } from './_directives/has-role.directive';
 import { UserManagementComponent } from './admin/user-management/user-management.component';
-import { PhotoManagementComponent } from './admin/photo-management/photo-management.component';
 import { RolesModalComponent } from './modals/roles-modal/roles-modal.component';
 import { ConfirmDialogComponent } from './modals/confirm-dialog/confirm-dialog.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { ProjectsComponent } from './projects/projects.component';
+import { ProjectManagementComponent } from './admin/project-management/project-management.component';
+import { MastersComponent } from './admin/masters/masters.component';
+import { TaskPrioritiesComponent } from './admin/task-priorities/task-priorities.component';
+import { TaskStatusComponent } from './admin/task-status/task-status.component';
+import { ComponentLoaderDirective} from './_directives/component-loader.directive';
+import { TasksComponent } from './employee/tasks/tasks.component';
+import { CreateTaskComponent } from './employee/create-task/create-task.component';
+import { EditTaskComponent } from './employee/edit-task/edit-task.component';
+import { UpdateTaskComponent } from './employee/update-task/update-task.component';
+import { EmployeePanelComponent } from './employee/employee-panel/employee-panel.component';
 
 @NgModule({
   declarations: [
@@ -56,9 +67,21 @@ import { ConfirmDialogComponent } from './modals/confirm-dialog/confirm-dialog.c
     AdminPanelComponent,
     HasRoleDirective,
     UserManagementComponent,
-    PhotoManagementComponent,
     RolesModalComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    AdminDashboardComponent,
+    ProjectsComponent,
+    ProjectManagementComponent,
+    MastersComponent,
+    TaskPrioritiesComponent,
+    TaskStatusComponent,
+    ComponentLoaderDirective,
+    TasksComponent,
+    CreateTaskComponent,
+    EditTaskComponent,
+    UpdateTaskComponent,
+    EmployeePanelComponent
+    
   ],
   imports: [
     BrowserModule,

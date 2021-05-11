@@ -20,6 +20,11 @@ namespace API.Data
         public DbSet<Message> Messages { get; set; }
          public DbSet<Group> Groups { get; set; }
         public DbSet<Connection> Connections { get; set; }
+         public DbSet<Project> Projects { get; set; }
+        public DbSet<TaskPriority> TaskPriorities { get; set; }
+         public DbSet<TaskStatus> TaskStatuses { get; set; }
+         public DbSet<Task> Tasks { get; set; }
+         public DbSet<TaskStatusDetail> TaskStatusDetails { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -61,6 +66,30 @@ namespace API.Data
                 .HasOne(u => u.Sender)
                 .WithMany(m => m.MessagesSent)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Project>().HasData(
+                new Project() { ProjectID = 1, ProjectName = "Project1", DateOfStart = Convert.ToDateTime("10-04-2020"), TeamSize = 10 }, 
+                new Project() { ProjectID = 2, ProjectName = "Project2", DateOfStart = Convert.ToDateTime("10-04-2020"), TeamSize = 10 }, 
+                new Project() { ProjectID = 3, ProjectName = "Project3", DateOfStart = Convert.ToDateTime("10-04-2020"), TeamSize = 10 }, 
+                new Project() { ProjectID = 4, ProjectName = "Project4", DateOfStart = Convert.ToDateTime("10-04-2020"), TeamSize = 10 }, 
+                new Project() { ProjectID = 5, ProjectName = "Project5", DateOfStart = Convert.ToDateTime("10-04-2020"), TeamSize = 10 } 
+             );
+            
+            builder.Entity<TaskPriority>().HasData(
+                new TaskPriority() {TaskPriorityID = 1, TaskPriorityName = "Urgent"},
+                new TaskPriority() {TaskPriorityID = 2, TaskPriorityName = "High"},
+                new TaskPriority() {TaskPriorityID = 3, TaskPriorityName = "Normal"},
+                new TaskPriority() {TaskPriorityID = 4, TaskPriorityName = "Low"}
+            );
+
+             builder.Entity<TaskStatus>().HasData(
+                new TaskStatus() { TaskStatusID = 1, TaskStatusName = "In Progress" }, 
+                new TaskStatus() { TaskStatusID = 2, TaskStatusName = "Ready for QA" }, 
+                new TaskStatus() { TaskStatusID = 3, TaskStatusName = "Assigned" }, 
+                new TaskStatus() { TaskStatusID = 4, TaskStatusName = "Finished" }, 
+                new TaskStatus() { TaskStatusID = 5, TaskStatusName = "Code Review" } 
+             );
+
 
             builder.ApplyUtcDateTimeConverter();
         }

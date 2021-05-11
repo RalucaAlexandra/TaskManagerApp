@@ -1,6 +1,6 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpBackend, HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Member } from '../_models/member';
@@ -96,4 +96,5 @@ export class MembersService {
     params = params.append('predicate', predicate);
     return getPaginatedResult<Partial<Member[]>>(this.baseUrl + 'likes', params, this.http);
   }
+  
 }

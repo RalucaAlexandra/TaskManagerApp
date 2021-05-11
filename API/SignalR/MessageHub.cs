@@ -25,7 +25,7 @@ namespace API.SignalR
             _mapper = mapper;
         }
 
-        public override async Task OnConnectedAsync()
+        public override async System.Threading.Tasks.Task OnConnectedAsync()
         {
             var httpContext = Context.GetHttpContext();
             var otherUser = httpContext.Request.Query["user"].ToString();
@@ -42,14 +42,14 @@ namespace API.SignalR
             await Clients.Caller.SendAsync("ReceiveMessageThread", messages);
         }
 
-        public override async Task OnDisconnectedAsync(Exception exception)
+        public override async System.Threading.Tasks.Task OnDisconnectedAsync(Exception exception)
         {
             var group = await RemoveFromMessageGroup();
             await Clients.Group(group.Name).SendAsync("UpdatedGroup", group);
             await base.OnDisconnectedAsync(exception);
         }
 
-        public async Task SendMessage(CreateMessageDto createMessageDto)
+        public async System.Threading.Tasks.Task SendMessage(CreateMessageDto createMessageDto)
         {
             var username = Context.User.GetUsername();
 

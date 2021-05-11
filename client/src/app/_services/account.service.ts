@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpBackend, HttpClient } from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import { User } from '../_models/user';
-import { ReplaySubject } from 'rxjs';
+import { Observable, ReplaySubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { PresenceService } from './presence.service';
+import { Member } from '../_models/member';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,11 @@ export class AccountService {
   baseUrl = environment.apiUrl;
   private currentUserSource = new ReplaySubject<User>(1);
   currentUser$ = this.currentUserSource.asObservable();
+  private httpClient : HttpClient;
+  
 
-  constructor(private http: HttpClient, private presence: PresenceService) { }
+
+  constructor(private http: HttpClient, private presence: PresenceService, private httpBackend: HttpBackend) { }
 
   login(model: any) {
     return this.http.post(this.baseUrl + 'account/login', model).pipe(
@@ -56,4 +60,12 @@ export class AccountService {
   getDecodedToken(token) {
     return JSON.parse(atob(token.split('.')[1]));
   }
+
+  getAllEmployees(): Observable<any>
+  {
+    this.httpClient = new HttpClient(this.httpBackend);
+    return this.httpClient.get<any>(this.baseUrl + 'getallemployees', { responseType: "json" });
+  }
+
+  
 }
