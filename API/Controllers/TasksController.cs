@@ -7,7 +7,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
@@ -20,6 +21,16 @@ namespace API.Controllers
             _userManager = userManager;
             _db = db;
         }
+
+        
+        [HttpGet]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Route("api/tasks")]
+        public IEnumerable<Task> Get()
+        {
+            return _db.Tasks.ToList();
+        }
+
 
         [HttpPost]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
@@ -37,7 +48,7 @@ namespace API.Controllers
             task.CurrentTaskStatusID = 1;
             task.CreatedOnString = task.CreatedOn.ToString("dd/MM/yyyy");
             task.LastUpdatedOnString = task.LastUpdatedOn.ToString("dd/MM/yyyy");
-            task.CreatedBy = 25;
+            task.CreatedBy = int.Parse(_userManager.GetUserId(HttpContext.User));
 
             _db.Tasks.Add(task);
             _db.SaveChanges();

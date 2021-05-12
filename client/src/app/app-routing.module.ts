@@ -40,8 +40,8 @@ const routes: Routes = [
       {path: 'masters', component: MastersComponent, canActivate: [AdminGuard]},
       {path: 'admin-dashboard', component: AdminDashboardComponent, canActivate: [AdminGuard]},
       {path: 'projects', component: ProjectsComponent, canActivate: [AdminGuard]},
-      {path: 'employee/tasks', component: TasksComponent, canActivate: [EmployeeGuard]},
-      {path: 'employee/createtask', component: CreateTaskComponent, canActivate: [EmployeeGuard]},
+      {path: 'tasks', component: TasksComponent, canActivate: [EmployeeGuard]},
+      {path: 'createtask', component: CreateTaskComponent, canActivate: [EmployeeGuard]},
       {path: 'edittask/:taskid', component: EditTaskComponent, canActivate: [EmployeeGuard]},
       {path: 'updatetaskstatus/:taskid', component: UpdateTaskComponent, canActivate: [EmployeeGuard]},
 

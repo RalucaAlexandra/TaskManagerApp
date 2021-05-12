@@ -1,2 +1,36 @@
 <h1>Tasks</h1>
-<a [routerLink]=" [ '/employee', 'createtask' ] " class="btn btn-primary">Create Task</a>
+<a routerLink='/createtask' class="btn btn-primary">Create Task</a>
+
+<div class="container">
+    <h3 class="text-center text-uppercase">List of Tasks</h3>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr class="text-center text-uppercase">
+                <th>Task ID</th>
+                <th>Task Name</th>
+                <th>Task Description</th>
+                <th>Created On</th>
+                <th>Project ID</th>
+                <th>Created By</th>
+                <th>Assign To</th>
+                <th>Task Priority ID</th>
+                <th>Last Update On</th>
+                <th>Current Status</th>
+            </tr>
+        </thead>
+        <tbody >
+            <tr *ngFor="let taskGroup of taskGroups">
+                <td>{{taskGroup.taskID}}</td>
+                <td>{{taskGroup.taskName}}</td>
+                <td>{{taskGroup.description}}</td>
+                <td>{{taskGroup.createdOn | date:'dd-mm-yyyy'}}</td>
+                <td>{{taskGroup.projectID}}</td>
+                <td>{{taskGroup.createdBy}}</td>
+                <td>{{taskGroup.assignedTo}}</td>
+                <td>{{taskGroup.projectID}}</td>
+                <td>{{taskGroup.lastUpdatedOn | date:'dd-mm-yyyy'}}</td>
+                <td>{{taskGroup.currentStatus}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

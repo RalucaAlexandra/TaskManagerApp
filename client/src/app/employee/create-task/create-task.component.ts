@@ -53,7 +53,7 @@ export class CreateTaskComponent implements OnInit {
     if (this.newTaskForm.valid)
     {
       this.tasksService.insertTask(this.newTaskForm.value).subscribe(() => {
-        this.router.navigate( [ "/employee", "tasks" ]);
+        this.router.navigateByUrl('/tasks');
       }, (error) => {
         console.log(error);
       });

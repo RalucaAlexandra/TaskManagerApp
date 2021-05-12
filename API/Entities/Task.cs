@@ -41,4 +41,10 @@ namespace API.Entities
         public virtual ICollection<TaskStatusDetail> TaskStatusDetails { get; set; }
 
     }
+        public class GroupedTask
+    {
+        public string TaskStatusName { get; set; }
+        public List<Task> Tasks { get; set; }
+    }
+
 }
