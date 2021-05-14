@@ -477,7 +477,6 @@ namespace API.Data.Migrations
                     b.ToTable("TaskStatusDetails");
                 });
 
-           
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.Property<int>("Id")
@@ -680,8 +679,6 @@ namespace API.Data.Migrations
                     b.Navigation("User");
                 });
 
-            
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.HasOne("API.Entities.AppRole", null)
@@ -725,8 +722,6 @@ namespace API.Data.Migrations
 
             modelBuilder.Entity("API.Entities.AppUser", b =>
                 {
-                    
-
                     b.Navigation("MessagesReceived");
 
                     b.Navigation("MessagesSent");

@@ -72,7 +72,7 @@ namespace API.Data.Migrations
                         name: "FK_TaskStatusDetails_AspNetUsers_UserID",
                         column: x => x.UserID,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
+                        principalColumn: "UserName",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_TaskStatusDetails_Tasks_TaskID",

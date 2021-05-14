@@ -17,12 +17,11 @@ import { environment } from 'src/environments/environment';
 })
 export class TasksComponent implements OnInit {
 
-  tasks: string[];
-  user: User[];
-  taskGroups: Task[];
+ 
+  taskGroup: GroupedTask[];
   baseUrl = environment.apiUrl;
-  taskPriorities: Observable<TaskPriority[]>;
-  constructor(private tasksService: TasksService, public membersService: MembersService, private httClient: HttpClient)
+ 
+  constructor(private tasksService: TasksService, public membersService: MembersService,public accountService:AccountService, private httClient: HttpClient)
   {
   }
 
@@ -32,7 +31,7 @@ export class TasksComponent implements OnInit {
 
   getAllTasks() {
     this.tasksService.getTasks().subscribe((response) => {
-      this.taskGroups = response;
+      this.taskGroup = response;
     });
   }
 

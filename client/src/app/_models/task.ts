@@ -18,7 +18,10 @@ export class Task
     project: Project;
     createdByUser: any;
     assignedToUser: any;
+    taskPriority: any;
     taskStatusDetails: any;
+    createdOnString: any;
+    lastUpdatedOnString: any;
 
     constructor()
     {

@@ -1,36 +1,111 @@
 <h1>Tasks</h1>
 <a routerLink='/createtask' class="btn btn-primary">Create Task</a>
 
-<div class="container">
-    <h3 class="text-center text-uppercase">List of Tasks</h3>
-    <table class="table table-bordered table-striped">
-        <thead>
-            <tr class="text-center text-uppercase">
-                <th>Task ID</th>
-                <th>Task Name</th>
-                <th>Task Description</th>
-                <th>Created On</th>
-                <th>Project ID</th>
-                <th>Created By</th>
-                <th>Assign To</th>
-                <th>Task Priority ID</th>
-                <th>Last Update On</th>
-                <th>Current Status</th>
-            </tr>
-        </thead>
-        <tbody >
-            <tr *ngFor="let taskGroup of taskGroups">
-                <td>{{taskGroup.taskID}}</td>
-                <td>{{taskGroup.taskName}}</td>
-                <td>{{taskGroup.description}}</td>
-                <td>{{taskGroup.createdOn | date:'dd-mm-yyyy'}}</td>
-                <td>{{taskGroup.projectID}}</td>
-                <td>{{taskGroup.createdBy}}</td>
-                <td>{{taskGroup.assignedTo}}</td>
-                <td>{{taskGroup.projectID}}</td>
-                <td>{{taskGroup.lastUpdatedOn | date:'dd-mm-yyyy'}}</td>
-                <td>{{taskGroup.currentStatus}}</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+<div class="row mt-1 mb-2">
+
+    <div class="col-lg-6 mb-1" *ngFor="let taskGroup of taskGroup">
+        <div class="card card-primary">
+
+            <div class="card-header">
+                <div class="card-title">
+                    <h4>
+                        {{taskGroup.taskStatusName}}
+                        <span class="badge badge-warning float-right">
+                            {{taskGroup.tasks.length}}
+                        </span>
+                    </h4>
+                </div>
+            </div>
+
+            <div class="card-body">
+
+                <div class="card mb-1" *ngFor="let task of taskGroup.tasks; let i = index">
+
+                    <div class="card-header">
+                        #{{i + 1}} &nbsp;&nbsp; {{task.taskName}}
+
+                        <div class="badge float-right mr-1 badge-primary" style="font-size:15px">
+                            {{task.taskPriority?.taskPriorityName}}
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <div>{{task.description}}</div>
+
+                        <div>
+                            <table class="table table-sm table-borderless">
+                                <tr>
+                                    <td>Created:</td>
+                                    <td>
+                                        <i class="fa fa-user"></i>
+                                        {{task.createdByUser?.userName}}
+                                        &nbsp;&nbsp;&nbsp;
+                                        <i class="fa fa-calendar"></i>
+                                        {{task.createdOnString}}
+
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>Assigned to:</td>
+                                    <td>
+                                        <i class="fa fa-user-o"></i>
+                                        {{task.assignedToUser?.userName}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Project:</td>
+                                    <td>
+                                        <i class="fa fa-briefcase"></i>
+                                        {{task.project?.projectName}}
+
+                                    </td>
+                                </tr>
+
+                            </table>
+
+                            <table class="table table-sm table-bordered">
+                                <thead class="table-light">
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th>User</th>
+                                    <th>Description</th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let taskStatusDetail of task.taskStatusDetails">
+                                        <td>
+                                            <i class="fa fa-calendar"></i>
+                                            {{taskStatusDetail?.statusUpdationDateTimeString}}
+                                        </td>
+                                        <td class="text-primary">
+                                            {{taskStatusDetail?.taskStatus?.taskStatusName}}
+                                        </td>
+                                        <td>
+                                            <i class="fa fa-user"></i>
+                                            {{taskStatusDetail?.user?.userName}}
+                                        </td>
+                                        <td>
+                                            {{taskStatusDetail?.description}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="btn-group">
+                            <a [routerLink]=" [ '/updatetaskstatus', task.taskID ] " class="btn btn-sm btn-outline-secondary">
+                                <i class="fa fa-pencil"></i>
+                                Edit Task Status
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
