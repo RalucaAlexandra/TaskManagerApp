@@ -37,9 +37,7 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
       this.member = data.member;
     })
 
-    this.route.queryParams.subscribe(params => {
-      params.tab ? this.selectTab(params.tab) : this.selectTab(0);
-    })
+    
 
     this.galleryOptions = [
       {
@@ -73,9 +71,7 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
     })
   }
 
-  selectTab(tabId: number) {
-    this.memberTabs.tabs[tabId].active = true;
-  }
+ 
 
   onTabActivated(data: TabDirective) {
     this.activeTab = data;

@@ -259,20 +259,7 @@ namespace API.Data.Migrations
                     b.ToTable("Photos");
                 });
 
-            modelBuilder.Entity("API.Entities.UserLike", b =>
-                {
-                    b.Property<int>("SourceUserId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("LikedUserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("SourceUserId", "LikedUserId");
-
-                    b.HasIndex("LikedUserId");
-
-                    b.ToTable("Likes");
-                });
+           
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
@@ -416,25 +403,7 @@ namespace API.Data.Migrations
                     b.Navigation("AppUser");
                 });
 
-            modelBuilder.Entity("API.Entities.UserLike", b =>
-                {
-                    b.HasOne("API.Entities.AppUser", "LikedUser")
-                        .WithMany("LikedByUsers")
-                        .HasForeignKey("LikedUserId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("API.Entities.AppUser", "SourceUser")
-                        .WithMany("LikedUsers")
-                        .HasForeignKey("SourceUserId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("LikedUser");
-
-                    b.Navigation("SourceUser");
-                });
-
+           
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.HasOne("API.Entities.AppRole", null)
@@ -478,10 +447,7 @@ namespace API.Data.Migrations
 
             modelBuilder.Entity("API.Entities.AppUser", b =>
                 {
-                    b.Navigation("LikedByUsers");
-
-                    b.Navigation("LikedUsers");
-
+                   
                     b.Navigation("MessagesReceived");
 
                     b.Navigation("MessagesSent");

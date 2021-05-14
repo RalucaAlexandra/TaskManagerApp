@@ -7,13 +7,6 @@ namespace API.Data.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Likes_Users_LikedUserId",
-                table: "Likes");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Likes_Users_SourceUserId",
-                table: "Likes");
 
             migrationBuilder.DropForeignKey(
                 name: "FK_Messages_Users_RecipientId",
@@ -303,19 +296,9 @@ namespace API.Data.Migrations
                 table: "AspNetUserRoles",
                 column: "RoleId");
 
-            migrationBuilder.AddForeignKey(
-                name: "FK_Likes_AspNetUsers_LikedUserId",
-                table: "Likes",
-                column: "LikedUserId",
-                principalTable: "AspNetUsers",
-                principalColumn: "Id");
+           
 
-            migrationBuilder.AddForeignKey(
-                name: "FK_Likes_AspNetUsers_SourceUserId",
-                table: "Likes",
-                column: "SourceUserId",
-                principalTable: "AspNetUsers",
-                principalColumn: "Id");
+        
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Messages_AspNetUsers_RecipientId",
@@ -344,14 +327,7 @@ namespace API.Data.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Likes_AspNetUsers_LikedUserId",
-                table: "Likes");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Likes_AspNetUsers_SourceUserId",
-                table: "Likes");
-
+            
             migrationBuilder.DropForeignKey(
                 name: "FK_Messages_AspNetUsers_RecipientId",
                 table: "Messages");
@@ -476,19 +452,9 @@ namespace API.Data.Migrations
                 table: "Users",
                 column: "Id");
 
-            migrationBuilder.AddForeignKey(
-                name: "FK_Likes_Users_LikedUserId",
-                table: "Likes",
-                column: "LikedUserId",
-                principalTable: "Users",
-                principalColumn: "Id");
+            
 
-            migrationBuilder.AddForeignKey(
-                name: "FK_Likes_Users_SourceUserId",
-                table: "Likes",
-                column: "SourceUserId",
-                principalTable: "Users",
-                principalColumn: "Id");
+            
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Messages_Users_RecipientId",
