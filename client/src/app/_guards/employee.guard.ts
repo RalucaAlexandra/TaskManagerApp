@@ -14,7 +14,7 @@ export class EmployeeGuard implements CanActivate {
   canActivate(): Observable<boolean> {
     return this.accountService.currentUser$.pipe(
       map(user => {
-        if (user.roles.includes('Member')) {
+        if (user.roles.includes('Developer') || user.roles.includes('TeamLeader')) {
           return true;
         }
         this.toastr.error('You cannot enter this area');

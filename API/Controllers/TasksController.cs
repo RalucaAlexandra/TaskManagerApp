@@ -78,7 +78,7 @@ namespace API.Controllers
             return Ok(taskStatusDetail);
         }
 
-        
+         //[Authorize(Policy = "RequireDeveloperRole")]
         [HttpGet]
        // [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [Route("api/tasks")]

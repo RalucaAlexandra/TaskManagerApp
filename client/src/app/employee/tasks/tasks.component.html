@@ -1,5 +1,5 @@
 <h1>Tasks</h1>
-<a routerLink='/createtask' class="btn btn-primary">Create Task</a>
+<a *appHasRole='["TeamLeader"]' routerLink='/createtask' class="btn btn-primary">Create Task</a>
 
 <div class="row mt-1 mb-2">
 
