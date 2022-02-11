@@ -1,8 +1,5 @@
-<div class="text-center mt-3">
-  <h4>Members - {{pagination?.totalItems}} found</h4>
-</div>
-
-<div class="container mt-2 d-flex justify-content-center">
+&nbsp;
+<div class="container d-flex justify-content-center">
   <form #form="ngForm" class="form-inline mb-3" (ngSubmit)="loadMembers()" autocomplete="off">
       <div class="col">
         <div class="btn-group float-right">
@@ -25,6 +22,7 @@
     </div>
   </form>
 </div>
+&nbsp;
 <div class="row">
     <div *ngFor="let member of members" class="col-2">
         <app-member-card [member]="member"></app-member-card>

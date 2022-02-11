@@ -25,8 +25,6 @@ namespace API.Controllers
         public AccountController(DataContext db, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ITokenService tokenService, IMapper mapper)
         {
             _db = db;
-
-
             _signInManager = signInManager;
             _userManager = userManager;
             _mapper = mapper;

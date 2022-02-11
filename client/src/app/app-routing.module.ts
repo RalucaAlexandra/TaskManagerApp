@@ -36,7 +36,6 @@ const routes: Routes = [
       {path: 'messages', component: MessagesComponent},
       {path: 'admin', component: AdminPanelComponent, canActivate: [AdminGuard]},
       {path: 'masters', component: MastersComponent, canActivate: [AdminGuard]},
-      {path: 'admin-dashboard', component: AdminDashboardComponent, canActivate: [AdminGuard]},
       {path: 'projects', component: ProjectsComponent, canActivate: [AdminGuard]},
       {path: 'tasks', component: TasksComponent, canActivate: [EmployeeGuard]},
       {path: 'createtask', component: CreateTaskComponent, canActivate: [EmployeeGuard]},

@@ -1,8 +1,10 @@
 <div class="row">
-    <div class="col-8 mx-auto">
+    <div class="col-3 mx-auto">
       <button class="btn btn-primary" data-toggle="modal" data-target="#newModal">Create Project</button>
+
     </div>
-    <div class="col-8 mx-auto">
+   
+    <div class="col-12 mx-auto">
       <table class="table">
         <thead>
           <th>Project ID</th>
@@ -18,8 +20,8 @@
             <td>{{project.dateOfStart}}</td>
             <td>{{project.teamSize}}</td>
             <td>
-              <button class="btn btn-info" (click)="onEditClick($event, i)" data-toggle="modal" data-target="#editModal">Edit</button>
-              <button class="btn btn-info" (click)="onDeleteClick($event, i)" data-toggle="modal" data-target="#deleteModal">Delete</button>
+              <button class="btn btn-info" (click)="onEditClick($event, i)" data-toggle="modal" data-target="#editModal">Edit</button>&nbsp;
+              <button class="btn btn-warning" (click)="onDeleteClick($event, i)" data-toggle="modal" data-target="#deleteModal">Delete</button>
             </td>
           </tr>
         </tbody>
